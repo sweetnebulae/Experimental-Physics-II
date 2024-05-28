@@ -4,6 +4,8 @@ Nilai k1 = 6.642 N/m
 
 Nilai k2 = 5.978 N/m
 
+NILAI VISKOSITAS
+
 Viskositas: 0.00117 Pa.S, Massa 1, Pegas 1 udara
 
 Viskositas: 0.00178 Pa.S, Massa 2, Pegas 1 udara
