@@ -73,14 +73,14 @@ func main() {
 	b7 := menghitungB(deltaX7, time7, m1)
 	b8 := menghitungB(deltaX8, time8, m2)
 
-	omega1 := menghitungOmega(k1, m1, b1)
-	omega2 := menghitungOmega(k2, m2, b2)
-	omega3 := menghitungOmega(k1, m1, b3)
-	omega4 := menghitungOmega(k2, m1, b4)
-	omega5 := menghitungOmega(k1, m2, b5)
-	omega6 := menghitungOmega(k2, m1, b6)
-	omega7 := menghitungOmega(k1, m1, b7)
-	omega8 := menghitungOmega(k2, m2, b8)
+	omega1 := menghitungOmega(k1, m1, b1) // omega 1: 40.452625
+	omega2 := menghitungOmega(k2, m2, b2) // omega 2: 25.780412
+	omega3 := menghitungOmega(k1, m1, b3) // omega 3: 40.450901
+	omega4 := menghitungOmega(k2, m1, b4) // omega 4: 36.312188
+	omega5 := menghitungOmega(k1, m2, b5) // omega 5: 28.719401
+	omega6 := menghitungOmega(k2, m1, b6) // omega 6: 36.344860
+	omega7 := menghitungOmega(k1, m1, b7) // omega 7: 40.458360
+	omega8 := menghitungOmega(k2, m2, b8) // omega 8: 25.803259
 
 	// Grafik
 	plotGrafik2(deltaX1, time1, omega1, "massa 1", "Pegas 1", "Udara", "grafik_osilasi_1.png")
