@@ -5,7 +5,6 @@ import (
 	"log"
 	"math"
 
-
 	"gonum.org/v1/gonum/stat"
 	"gonum.org/v1/plot"
 	"gonum.org/v1/plot/plotter"
@@ -53,7 +52,7 @@ func main() {
 	k2 := 5.97  // konstanta pegas 2
 	m1 := 0.164 // massa 1
 	m2 := 0.231 // massa 2
-	//r := 0.025  // jari-jari beban
+	r  := 0.025  // jari-jari beban
 
 	perhitungan()
 	plotGrafik1(deltaX1, time1, "Variasi Massa 1 Pegas 1 Pada Udara", "regresi_eksponensial_1.png")
@@ -92,6 +91,16 @@ func main() {
 	plotGrafik2(deltaX6, time6, omega6, "massa 2", "Pegas 2", "Udara", "grafik_osilasi_6.png")
 	plotGrafik2(deltaX7, time7, omega7, "massa 1", "Pegas 2", "Air", "grafik_osilasi_7.png")
 	plotGrafik2(deltaX8, time8, omega8, "massa 2", "Pegas 2", "Air", "grafik_osilasi_8.png")
+
+	hitungViskositas(deltaX1, time1, r, m1) // Massa 1, Pegas 1 udara
+	hitungViskositas(deltaX2, time2, r, m2) // Massa 2, pegas 1 udara
+	hitungViskositas(deltaX3, time3, r, m1) // Massa 1, pegas 1 air
+	hitungViskositas(deltaX4, time4, r, m2) // Massa 2, pegas 1 air
+	hitungViskositas(deltaX5, time5, r, m1) // Massa 1, pegas 2 udara
+	hitungViskositas(deltaX6, time6, r, m2) // Massa 2, pegas 2 udara
+	hitungViskositas(deltaX7, time7, r, m1) // Massa 1, pegas 2 air
+	hitungViskositas(deltaX8, time8, r, m2) // massa 2, pegas 2 air
+
 }
 
 func perhitungan() {
@@ -105,8 +114,9 @@ func perhitungan() {
 	k2 := (m * g) / x2
 
 	// Menampilkan nilai k1 & k2
-	fmt.Printf("Nilai k1 = %.3f N/m\n", k1)
-	fmt.Printf("Nilai k2 = %.3f N/m\n", k2)
+	fmt.Printf("Nilai k1 = %.3f N/m\n", k1) // Nilai k1 = 6.642 N/m
+	fmt.Printf("Nilai k2 = %.3f N/m\n", k2) // Nilai k2 = 5.978 N/m
+
 }
 
 func plotGrafik1(deltaX, time []float64, judul, fileName string) {
@@ -188,7 +198,7 @@ func menghitungB(deltaX, time []float64, m float64) float64 {
 		lndeltaX[i] = math.Log(deltaX[i])
 	}
 	slope, _ := stat.LinearRegression(time, lndeltaX, nil, false)
-	b := -2 * m * slope
+	b := 2 * m * slope
 	return b
 }
 
@@ -221,7 +231,7 @@ func plotGrafik2(deltaX, time []float64, omega float64, massa, pegas, medium, fi
 	line := plotter.NewFunction(func(x float64) float64 { return a * math.Exp(b*x) })
 	line.Color = plotutil.Color(1)
 	line.Width = vg.Points(2)
-	
+
 	// Oscillation plot
 	oscillation := make(plotter.XYs, 1000)
 	for i := range oscillation {
@@ -247,4 +257,11 @@ func plotGrafik2(deltaX, time []float64, omega float64, massa, pegas, medium, fi
 	if err := p.Save(8*vg.Inch, 6*vg.Inch, fileName); err != nil {
 		log.Panic(err)
 	}
+}
+
+func hitungViskositas(deltaX, time []float64, r, m float64) {
+	pi := math.Pi
+	b := menghitungB(deltaX, time, m)
+	viscosity := b * 0.001 / (6 * pi * r)
+	fmt.Printf("Viskositas: %.5f Pa.S\n", viscosity)
 }
