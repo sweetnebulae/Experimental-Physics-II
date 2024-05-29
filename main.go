@@ -64,14 +64,14 @@ func main() {
 	plotGrafik1(deltaX7, time7, "Variasi Massa 1 Pegas 2 Pada Air ", "regresi_eksponensial_7.png")
 	plotGrafik1(deltaX8, time8, "Variasi Massa 2 Pegas 2 Pada Air", "regresi_eksponensial_8.png")
 
-	b1 := menghitungB(deltaX1, time1, m1)
-	b2 := menghitungB(deltaX2, time2, m2)
-	b3 := menghitungB(deltaX3, time3, m1)
-	b4 := menghitungB(deltaX4, time4, m2)
-	b5 := menghitungB(deltaX5, time5, m1)
-	b6 := menghitungB(deltaX6, time6, m2)
-	b7 := menghitungB(deltaX7, time7, m1)
-	b8 := menghitungB(deltaX8, time8, m2)
+	b1 := menghitungB(deltaX1, time1, m1) // 0.5534851269355424
+	b2 := menghitungB(deltaX2, time2, m2) // 0.8380877735222986
+	b3 := menghitungB(deltaX3, time3, m1) // 0.5668796121769734
+	b4 := menghitungB(deltaX4, time4, m2) // 0.8402521541823444
+	b5 := menghitungB(deltaX5, time5, m1) // 0.5558247334910178
+	b6 := menghitungB(deltaX6, time6, m2) // 0.6712974079157135
+	b7 := menghitungB(deltaX7, time7, m1) // 0.5063764427932589
+	b8 := menghitungB(deltaX8, time8, m2) // 0.6714470785136224
 
 	omega1 := menghitungOmega(k1, m1, b1) // omega 1: 40.452625
 	omega2 := menghitungOmega(k2, m2, b2) // omega 2: 25.780412
